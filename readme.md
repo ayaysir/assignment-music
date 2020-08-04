@@ -10,4 +10,7 @@ http://localhost:8080 으로 접속하였을 때
 * Spring Boot
 * H2 데이터베이스
 
+## 기타
+api_doc.md 문서 추가하였습니다.
+
 
