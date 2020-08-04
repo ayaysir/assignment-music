@@ -8,7 +8,6 @@ import com.yoonbumtae.grepp.web.dto.Song;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +38,7 @@ public class AlbumServiceImpl implements AlbumService {
                     .locale(song.getLocale())
                     .songs(map.get(x).stream().map(y -> {
                         return SimpleSong.builder()
+                                .id(y.getSongId())
                                 .length(y.getLength())
                                 .title(y.getTitle())
                                 .track(y.getTrack())

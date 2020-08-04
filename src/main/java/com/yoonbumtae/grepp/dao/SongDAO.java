@@ -1,6 +1,5 @@
 package com.yoonbumtae.grepp.dao;
 
-import com.yoonbumtae.grepp.web.dto.Album;
 import com.yoonbumtae.grepp.web.dto.Song;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,8 +19,6 @@ public class SongDAO {
                 "s.id as song_id, s.length, s.title, s.track " +
                 "from album a, song s " +
                 "where a.id = s.album_id";
-
-
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
 

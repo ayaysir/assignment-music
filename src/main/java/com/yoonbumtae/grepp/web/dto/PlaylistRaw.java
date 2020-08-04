@@ -5,23 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
-@Getter
-@ToString
 @NoArgsConstructor
-public class SimpleSong {
-
+@ToString
+@Getter
+public class PlaylistRaw {
     private Long id;
-    private Long length;
+    private Long userId;
     private String title;
-    private Integer track;
+
+    // list-songs
+    private Long songId;
 
     @Builder
-    public SimpleSong(Long id, Long length, String title, Integer track) {
+    public PlaylistRaw(Long id, Long userId, String title, Long songId) {
         this.id = id;
-        this.length = length;
+        this.userId = userId;
         this.title = title;
-        this.track = track;
+        this.songId = songId;
     }
 }

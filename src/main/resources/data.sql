@@ -24,6 +24,21 @@ CREATE TABLE `song` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `playlist` (
+    `id` bigint NOT NULL AUTO_INCREMENT,
+    `user_id` bigint NOT NULL,
+    `title` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 외래키 연결
+CREATE TABLE `playlist_songs` (
+    `id` bigint NOT NULL AUTO_INCREMENT,
+    `playlist_id` bigint NOT NULL,
+    `song_id` bigint NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 insert into album values (1, 'Please Please Me (1963.3)', 'en,kr');
 insert into song values (null, 1, 123, 'Please Please Me (1963.3) song-1', 1);
 insert into song values (null, 1, 123, 'Please Please Me (1963.3) song-2', 2);

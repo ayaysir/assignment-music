@@ -12,4 +12,5 @@ public interface AlbumService {
     List<Album> findAll();
     Map<String, List<Album>> findByAlbumTitleAndLocale(String keyword, String locale);
     List<Album> findAllByPaging(String locale, Integer offset, Integer count);
+
 }
