@@ -15,10 +15,10 @@ public class Album {
     private Long id;
     private String albumTitle;
     private List<String> locale;
-    private List<Song> songs;
+    private List<SimpleSong> songs;
 
     @Builder
-    public Album(Long id, String albumTitle, List<String> locale, List<Song> songs) {
+    public Album(Long id, String albumTitle, List<String> locale, List<SimpleSong> songs) {
         this.id = id;
         this.albumTitle = albumTitle;
         this.locale = locale;

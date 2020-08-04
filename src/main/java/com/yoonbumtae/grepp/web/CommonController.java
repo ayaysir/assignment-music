@@ -1,6 +1,7 @@
 package com.yoonbumtae.grepp.web;
 
 import com.yoonbumtae.grepp.service.AlbumService;
+import com.yoonbumtae.grepp.web.dto.Album;
 import com.yoonbumtae.grepp.web.dto.Song;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +26,13 @@ public class CommonController {
     }
 
     @GetMapping("/all")
-    public List<Song> searchAll() {
+    public List<Album> searchAll() {
         return albumService.findAll();
     }
 
+
     @GetMapping("/search")
-    public Map<String, List<Song>> searchByTitleAndLocale(String title, String locale) {
+    public Map<String, List<Album>> searchByTitleAndLocale(String title, String locale) {
         return albumService.findByAlbumTitleAndLocale(title, locale);
     }
 
