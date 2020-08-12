@@ -8,7 +8,8 @@ http://localhost:8080 으로 접속하였을 때
 ## 개발환경
 * IntelliJ IDEA
 * Spring Boot
-* H2 데이터베이스
+* Lombok
+* H2 데이터베이스, JDBC
 
 ## 기타
 api_doc.md 문서 추가하였습니다.
