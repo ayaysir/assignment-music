@@ -29,19 +29,19 @@ public class AlbumServiceImpl implements AlbumService {
     private List<Album> albumCollector(List<Song> songs) {
         Map<Long, List<Song>> map = songs.stream().collect(groupingBy(Song::getAlbumId));
 
-        return map.keySet().stream().map(x -> {
+        return map.keySet().stream().map(albumId -> {
             Map<String, Object> innerMap = new HashMap<>();
-            Song song = map.get(x).get(0);
+            Song song = map.get(albumId).get(0);
             return Album.builder()
-                    .id(x)
+                    .id(albumId)
                     .albumTitle(song.getAlbumTitle())
                     .locale(song.getLocale())
-                    .songs(map.get(x).stream().map(y -> {
+                    .songs(map.get(albumId).stream().map(eachSong -> {
                         return SimpleSong.builder()
-                                .id(y.getSongId())
-                                .length(y.getLength())
-                                .title(y.getTitle())
-                                .track(y.getTrack())
+                                .id(eachSong.getSongId())
+                                .length(eachSong.getLength())
+                                .title(eachSong.getTitle())
+                                .track(eachSong.getTrack())
                                 .build();
                     }).collect(Collectors.toList()))
                     .build();

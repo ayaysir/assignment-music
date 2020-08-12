@@ -6,7 +6,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Repository
@@ -41,10 +43,13 @@ public class SongDAO {
                 "s.id as song_id, s.length, s.title, s.track " +
                 "from album a, song s " +
                 "where a.id = s.album_id " +
-                "and a.album_title like '%" + keyword + "%' " +
-                "and a.locale like '%" + locale + "%'";
+                "and a.album_title like ? " +
+                "and a.locale like ?";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        String wrappedKeyword = "%" + keyword + "%";
+        String wrappedLocale = "%" + locale + "%";
+
+        return jdbcTemplate.query(sql, new Object[] {wrappedKeyword, wrappedLocale}, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
@@ -65,10 +70,13 @@ public class SongDAO {
                 "s.id as song_id, s.length, s.title, s.track " +
                 "from album a, song s " +
                 "where a.id = s.album_id " +
-                "and s.title like '%" + keyword + "%' " +
-                "and a.locale like '%" + locale + "%'";
+                "and s.title like ? " +
+                "and a.locale like ?";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        String wrappedKeyword = "%" + keyword + "%";
+        String wrappedLocale = "%" + locale + "%";
+
+        return jdbcTemplate.query(sql, new Object[] {wrappedKeyword, wrappedLocale}, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
@@ -97,10 +105,12 @@ public class SongDAO {
                 "s.id as song_id, s.length, s.title, s.track " +
                 "from album a, song s " +
                 "where a.id = s.album_id " +
-                "and a.locale like '%" + locale + "%' " +
-                "limit " + offset + ", " + count;
+                "and a.locale like ? " +
+                "limit ?, ? ";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+        String wrappedLocale = "%" + locale + "%";
+
+        return jdbcTemplate.query(sql, new Object[] {wrappedLocale, offset, count}, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
