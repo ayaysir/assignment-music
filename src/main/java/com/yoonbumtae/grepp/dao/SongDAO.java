@@ -49,7 +49,7 @@ public class SongDAO {
         String wrappedKeyword = "%" + keyword + "%";
         String wrappedLocale = "%" + locale + "%";
 
-        return jdbcTemplate.query(sql, new Object[] {wrappedKeyword, wrappedLocale}, (rs, rowNum) -> {
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
@@ -62,7 +62,7 @@ public class SongDAO {
                     .build();
 
             return song;
-        });
+        }, wrappedKeyword, wrappedLocale);
     }
 
     public List<Song> findBySongTitleAndLocale(String keyword, String locale) {
@@ -76,7 +76,7 @@ public class SongDAO {
         String wrappedKeyword = "%" + keyword + "%";
         String wrappedLocale = "%" + locale + "%";
 
-        return jdbcTemplate.query(sql, new Object[] {wrappedKeyword, wrappedLocale}, (rs, rowNum) -> {
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
@@ -89,7 +89,7 @@ public class SongDAO {
                     .build();
 
             return song;
-        });
+        }, wrappedKeyword, wrappedLocale);
     }
 
     public Long getAlbumTotalCount() {
@@ -110,7 +110,7 @@ public class SongDAO {
 
         String wrappedLocale = "%" + locale + "%";
 
-        return jdbcTemplate.query(sql, new Object[] {wrappedLocale, offset, count}, (rs, rowNum) -> {
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
 
             Song song = Song.builder()
                     .albumId(rs.getLong("id"))
@@ -123,7 +123,7 @@ public class SongDAO {
                     .build();
 
             return song;
-        });
+        }, wrappedLocale, offset, count);
     }
 
 
